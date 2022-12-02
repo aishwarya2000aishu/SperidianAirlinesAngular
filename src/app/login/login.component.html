@@ -1,0 +1,41 @@
+<div style="color: red; text-align: center; font-style: italic;">
+    {{ message }}
+</div>
+<div class="card">
+    <h2 style="text-align: center;">Login</h2>
+    <form (ngSubmit)="loginUser()" #f="ngForm" name="form">
+
+        <div class="form-floating">
+            <input class="form-control" type="text" required minlength="4" name="email" placeholder="Enter Email ID"
+                [(ngModel)]=login.email #name="ngModel" /><br />
+            <label for="uname"><b>Email ID</b></label>
+            <div *ngIf="name.invalid && (name.dirty || name.touched) || f.submitted && name.invalid"
+                class="alert alert-danger">
+                <div *ngIf="name.errors.required" style="color:red; font-size: 15px; margin-bottom: 10px;">*Email ID is
+                    required</div>
+                <div *ngIf="name.errors.minlength" style="color:red; font-size: 15px; margin-bottom: 10px;">*must be at
+                    least 4 characters long</div>
+            </div>
+        </div>
+
+        <div class="form-floating">
+            <input class="form-control" id="psw" type="password" required minlength="6" placeholder="Enter Password"
+                name="password" [(ngModel)]=login.password #psw="ngModel" /><br />
+            <label for="psw"><b>Password</b></label>
+            <div *ngIf="psw.invalid && (psw.dirty || psw.touched) || f.submitted && psw.invalid"
+                class="alert alert-danger">
+                <div *ngIf="psw.errors.required" style="color:red; font-size: 15px; margin-bottom: 10px;">*Password is
+                    required</div>
+                <div *ngIf="psw.errors.minlength" style="color:red; font-size: 15px; margin-bottom: 10px;">*must be at
+                    least 6 digit long</div>
+            </div>
+        </div>
+
+        <div class="form-check">
+            <input id="form-check-input" type="checkbox" checked="checked" name="remember" ngModel>
+            <label class="form-check-label">&nbsp;  Remember Me</label>
+        </div><br>
+        <button class="btn btn-primary" type="submit">Login</button><br>
+        <label class="signup">New User ?<a routerLink="/register">Sign up now</a></label>
+    </form>
+</div>

@@ -1,0 +1,18 @@
+<div class="card">
+    <form (ngSubmit)="deleteFlight()" id="admin-form" #f="ngForm" name="form">
+        <div id="header">
+            <h3 style="text-align: center;">Delete Flights</h3>
+        </div>
+        <div class="form-floating">
+            <input class="form-control" type="number" placeholder="Enter ID" name="fid" [(ngModel)]=this.id required #did="ngModel"/>
+            <label for="fid"><b>Flight ID</b></label>
+            <div *ngIf = "did.invalid && (did.dirty || did.touched) || f.submitted && did.invalid" class = "alert alert-danger">
+                <div *ngIf = "did.errors.required" style="color:red; font-size: 15px; margin-bottom: 10px;">*Id is required</div>
+            </div>  <br> 
+            <!--deleting data from schedule-->
+            <!--every day  schedule to be deleted using a trigger. Two seperate tables one conytaining history of the schedules and one containning future schedules-->
+            <button class="btn btn-danger" type="submit" id="edit-flight">Delete Flight</button>
+        </div>
+    </form>
+</div>
+<br><br>

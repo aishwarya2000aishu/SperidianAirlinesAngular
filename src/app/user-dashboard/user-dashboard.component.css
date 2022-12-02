@@ -1,0 +1,47 @@
+.cardd {
+    overflow: hidden;
+    text-align: center;
+    padding: 20px;
+    width: 100%;
+
+}
+.card1{
+    background: rgba(255, 255, 255, .9);
+
+}
+.cardd form{
+    width: 100%;
+    align-content: center;
+    margin: auto;
+}
+
+.bookings{
+    background: rgba(255, 255, 255, 0.4);
+    color: black;
+    width: 100%;
+    padding: 10px;
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: block;
+    height: max-content;
+}
+.bookings input, select{
+    border: 1px solid grey;
+    padding: 10px;
+}
+
+
+.bookings input:focus {
+    outline: none;
+    border-color: red;
+    box-shadow: 0 0 6px red;
+}
+
+
+
+.bookings select:focus{
+    outline: none;
+    border-color: red;
+    box-shadow: 0 0 6px red;
+}

@@ -1,0 +1,141 @@
+<div style="overflow: hidden;">
+
+    <div class="search-details" style="overflow: hidden;">
+        <div>
+            <b>
+                <h2>BOOKING SUMMARY</h2>
+            </b>
+        </div>
+        <div>
+            <div style="height:auto;">
+                <div class="flights" *ngFor="let select of selectedFlights;" style="width: 90%">
+                    <div class="flightcard"
+                        style="width: 98%; text-align: left; display: inline-block;">
+                        <div class="flightdata">
+                            <label id="fid">{{ select.airlines }} F{{ select.id }}</label>
+                        </div>
+                        <div class="flightdata" style="font-size: x-large; font-weight: bolder;">
+                            <label id="fdepart">{{ select.depart.substring(11,16) }}</label>
+                            <label id="farrival">{{ select.arrive.substring(11,16) }}</label>
+                        </div>
+                        <img id="loc" src="assets/images/location.png" alt="" style="float: left;">
+                        &nbsp;&nbsp;
+                        <hr>
+                        <img id="plane" src="assets/images/plane.png" alt="">
+                        <hr>
+                        <img id="loc" src="assets/images/location.png" alt="" style="float: right;">
+                        <div class="flightdata" style="font-size: medium;">
+                            <label id="fcity">{{ select.source.substring(0,3) }}</label>
+                            <label id="tcity">{{ select.destination.substring(0,3) }}</label>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            <div>
+                <div class="flights" style="width: 80%; overflow: hidden;">
+                    <div style="padding: 15px; height: max-content; color: #000066;;">
+                        <label style="float: left; margin-left: 20px; font-size: larger; font-weight: bold;">Total
+                            Fare</label>
+                        &nbsp; &nbsp; &nbsp;
+                        <label>INR</label> &nbsp; &nbsp; &nbsp;
+                        <label style="font-size: x-large; font-weight: 500;">{{ totalfare }}</label> <br><br>
+                        <label style="font-size: large; text-align: center; font-weight: 500;">No. of Passengers: {{ pass }}</label>
+                        <button class="btn btn-warning" style="width: 50%; margin-top: 10px;" routerLink="/">Modify Search</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="cardd">
+        <form (ngSubmit)="addPayment()" #f="ngForm" name="form">
+            <table *ngFor="let pass of passNo(passengers); let i = index; trackBy: trackByMethod"
+                style="margin-bottom: 20px;">
+                <b> Passenger {{ (i+1) }} Details : </b>
+                <div class="bookings">
+                    <tr>
+                        <th><label for="title"><b>Title</b></label></th>
+                        <th><label for="name"><b>Full Name</b></label></th>
+                        <th><label for="gender"><b>Gender</b></label></th>
+                        <th><label for="age"><b>Age</b></label></th>
+                        <th><label for="mobile"><b>Phone No.</b></label></th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <select name="title" id="title" [(ngModel)]="booking.passengersDetails[i].title" required
+                                #title="ngModel" class="form-control"  [class.is-invalid]="title.invalid && title.touched">
+                                <option [ngValue]="null" [disabled]="true">--Title--</option>
+                                <option value="Mr">Mr</option>
+                                <option value="Mrs">Mrs</option>
+                                <option value="Ms">Ms</option>
+                                <option value="Dr">Dr.</option>
+                            </select>
+                            
+                            <small class="warn" [class.d-none]="title.valid || title.untouched">Title is required</small>
+
+                        </td>
+
+                        <td>
+                            <input type="text" placeholder="Enter Full Name" name="fullName" class="form-control"
+                                [(ngModel)]="booking.passengersDetails[i].fullName" required #fullName="ngModel"  [class.is-invalid]="fullName.invalid && fullName.touched">
+                            
+                            <small class="warn" [class.d-none]="fullName.valid || fullName.untouched">Name is required</small>
+                        </td>
+
+                        <td>
+                            <select name="gender" id="gender" [(ngModel)]="booking.passengersDetails[i].gender" required
+                                #gender="ngModel"  class="form-control" [class.is-invalid]="gender.invalid && gender.touched">
+                                <option [ngValue]="null" [disabled]="true">--Select Gender--</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Other">Other</option>
+                            </select>
+                            
+                            <small class="warn" [class.d-none]="gender.valid || gender.untouched">Name is required</small>
+
+                        </td>
+
+                        <td>
+                            <input type="text" placeholder="Enter Age" name="age" class="form-control"
+                                [(ngModel)]="booking.passengersDetails[i].age" required #age="ngModel" [class.is-invalid]="age.invalid && age.touched">
+                            
+                            <small class="warn" [class.d-none]="age.valid || age.untouched">Age is required</small>
+
+                        </td>
+
+                        <td>
+                            <input type="tel" placeholder="Enter Phone Number" name="phoneNumber" class="form-control"
+                                [(ngModel)]="booking.passengersDetails[i].phoneNumber" required #phoneNumber="ngModel"  [class.is-invalid]="phoneNumber.invalid && phoneNumber.touched">
+                          
+                            <small class="warn" [class.d-none]="phoneNumber.valid || phoneNumber.untouched">Age is required</small>
+
+                        </td>
+
+                    </tr>
+                </div>
+            </table>
+            <button class="btn btn-primary" type="submit">Book Now</button>
+        </form>
+    </div>
+
+    <div *ngIf="addPay" class="add" style="height: 96.6%;">
+        <form #card="ngForm" (ngSubmit)="confirmedBooking()">
+                <div class="addC" style="background-color: rgb(255, 255, 255,.9);height: 375px; border-radius: 10px;">
+                <label>Payment Details &nbsp;&nbsp; <img src="assets/images/cross.jpg" (click)="hideDiv()" class="close" /></label>
+                <hr class="line">
+                <p style="margin-top: -30px;">Card Number</p>
+                <input type="text" pattern="^[0-9]{16}$" placeholder="XXXX-XXXX-XXXX-XXXX     (16 digits)" required>
+                Expiry Date
+                <span style="margin-left: 227px;">
+                CV Code</span><br>
+                <input type="number" placeholder="MM" style="width: 20%;">
+                <input type="number" placeholder="YY" style="width: 20%;">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                <input type="number" placeholder="CV" style="width: 30%;">
+                <hr class="line">
+                <button type="submit" class="btn btn-danger" (click)="hideDiv()">Cancel</button>
+                <button type="submit" class="createbtn btn btn-primary">Confirm Booking</button>
+            </div>
+        </form>
+</div>

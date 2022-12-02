@@ -1,0 +1,18 @@
+<head>
+    <style>
+        .world{
+            margin-top:-35px;
+        }
+    </style>
+</head>
+<div class="world">
+<marquee><h1 style=" text-align: center;">Welcome, {{ admin }} !</h1></marquee>
+<div class="admin-menu">
+    <ul style="list-style:none">
+        <li><a class="btn btn-primary" routerLink="./add-flight"style="font-size:20px"><img src="assets/images/flight.jpg" width="5%">Add Flight</a></li>
+        &nbsp;&nbsp;
+        <li><a class="btn btn-primary" routerLink="./delete-flight"style="font-size:20px"><img src="assets/images/flight.jpg" width="5%">Delete Flight</a></li>
+    </ul>
+</div>
+</div>
+<router-outlet></router-outlet>

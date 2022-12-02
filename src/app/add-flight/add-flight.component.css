@@ -1,0 +1,44 @@
+#admin-form {
+  width: 540px;
+}
+
+#header {
+  background: rgba(255, 255, 255, 0.6);
+  width: 25%;
+  height: 20%;
+  padding: 2px;
+  margin: auto;
+ 
+}
+.c1{
+  margin-top:-10px;
+}
+.container button {
+  font-size: large;
+  width: 50%;
+  text-align: center;
+}
+.container button:hover {
+  font-size: larger;
+}
+
+.container select{
+  display: inline-block;
+  padding-bottom: 10px;
+  padding: 10px;
+  margin-bottom: 10px;
+  width: 97%;
+  border: 2px solid;
+}
+.container select:hover {
+        border: 2px solid darkblue;
+}
+.info-box select:focus {
+  outline: none;
+}
+.container select:focus {
+  border: 2px solid red;
+}
+input, select {
+  border-color: #6B6A6A;
+}

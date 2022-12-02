@@ -1,0 +1,130 @@
+<div class="card">
+   
+    <h4 style="text-align: center;">Search Flights</h4>
+    <form (ngSubmit)="searchFlights()" id="flight-form" #f="ngForm" name="form">
+        <div class="row g-3">
+            <div class="col-md-12">
+                <div class="form-group" id="flightbox">
+                    <div id="flight-type">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="flight-type" checked [(ngModel)]=radiobtn
+                                value="oneway" class="radiobtn" id="one-way" (change)="onChangeTrip($event)" />
+                            <label for="one-way">One Way Trip</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="flight-type" [(ngModel)]=radiobtn
+                                value="return" class="radiobtn" id="return" (change)="onChangeTrip($event)" />
+                            <label for="return">Round Trip</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            
+            <div class="col-md-6">
+                <div class="form-floating">
+                    <select class="form-select" name="source" [(ngModel)]=searchdto.source required #source="ngModel">
+                        <option [ngValue]="null" [disabled]="true">Select City</option>
+                        <option *ngFor="let ct of City" [(ngValue)]=ct.name>{{ct.name}} </option>
+                    </select>
+                    <label for="">From</label>
+                    <div *ngIf="source.invalid && (source.dirty || source.touched) || f.submitted && source.invalid"
+                        class="alert alert-danger">
+                        <div *ngIf="source.errors.required" style="color:red; font-size: 15px; margin-bottom: 10px;">
+                            *From City name is required</div>
+                    </div>
+                    <div id="depart-res"></div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="form-floating" id="arrive-box">
+                    <select class="form-select" name="destination" [(ngModel)]=searchdto.destination required
+                        #destination="ngModel">
+                        <option [ngValue]="null" [disabled]="true">Select City
+                        <option>
+                        <option *ngFor="let ct of City" [(ngValue)]=ct.name>{{ct.name}} </option>
+                    </select>
+                    <label for="">To</label>
+                    <div *ngIf="destination.invalid && (destination.dirty || destination.touched) || f.submitted && destination.invalid"
+                        class="alert alert-danger">
+                        <div *ngIf="destination.errors.required"
+                            style="color:red; font-size: 15px; margin-bottom: 10px;">
+                            *To City name is required</div>
+                    </div>
+                    <div id="arrive-res"></div>
+                </div>
+            </div>
+            
+            <div class="col-md-6">
+                <div class="form-floating">
+                    <input class="form-control" type="date" id="leave-date" [min]="departDate" placeholder="Select Date"
+                        (change)="onDateSelect($event)" name="depart" [(ngModel)]=searchdto.depart
+                        style="border-color: #6B6A6A;" required #depart="ngModel" />
+                    <label for="">Departure Date</label>
+                    <div *ngIf="depart.invalid && (depart.dirty || depart.touched) || f.submitted && depart.invalid"
+                        class="alert alert-danger">
+                        <div *ngIf="depart.errors.required" style="color:red; font-size: 15px; margin-bottom: 10px;">
+                            *Departure date is required</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="form-floating" id="return-box">
+                   
+                    <input class="form-control" type="date" id="return-date" [value]="resetDate" [min]="returnDate" placeholder="Select Date"
+                        [disabled]="oneway" name="arrive" [(ngModel)]=searchdto.arrive style="border-color: #6B6A6A;"
+                        required #arrive="ngModel" />
+                    <label for="">Return Date</label>
+                    <div *ngIf="arrive.invalid && (arrive.dirty || arrive.touched) || f.submitted && arrive.invalid"
+                        class="alert alert-danger">
+                        <div *ngIf="arrive.errors.required" style="color:red; font-size: 15px; margin-bottom: 10px;">
+                            *Departure date is required</div>
+                    </div>
+                </div>
+            </div>
+           
+            <div class="col-md-6">
+                <div class="form-floating">
+                    <select class="form-select" name="adults" id="adults" name="noOfPassengers"
+                        [(ngModel)]=searchdto.noOfPassengers required #noOfPassengers="ngModel">
+                        <option [ngValue]="null" [disabled]="true">Select No. of Passengers</option>
+                        <option *ngFor="let no of passengers; trackBy:indexTracker" [ngValue]=no>{{ no }}</option>
+                        
+
+                    </select>
+                    <label for="adults">No. of Passengers</label>
+                    <div *ngIf="noOfPassengers.invalid && (noOfPassengers.dirty || noOfPassengers.touched) || f.submitted && noOfPassengers.invalid"
+                        class="alert alert-danger">
+                        <div *ngIf="noOfPassengers.errors.required"
+                            style="color:red; font-size: 15px; margin-bottom: 10px;">
+                            *Please select No. of Passengers
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="form-floating">
+                    <select class="form-select" name="class-type" id="class-type" name="fclass"
+                        [(ngModel)]=searchdto.fclass required #fclass="ngModel">
+                        <option [ngValue]="null" [disabled]="true">Select Class</option>
+                        <option value="ECONOMY">Economy</option>
+                        <option value="BUSINESS">Business</option>
+                    </select>
+                    <label for="class-type">Class</label>
+                    <div *ngIf="fclass.invalid && (fclass.dirty || fclass.touched) || f.submitted && fclass.invalid"
+                        class="alert alert-danger">
+                        <div *ngIf="fclass.errors.required" style="color:red; font-size: 15px; margin-bottom: 10px;">
+                            *Please select class</div>
+                    </div>
+                </div>
+            </div>
+          
+
+            <button class="btn btn-primary" type="submit" id="search-flight">Search</button>
+        </div>
+    </form>
+
+</div>

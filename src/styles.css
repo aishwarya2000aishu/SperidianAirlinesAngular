@@ -1,0 +1,173 @@
+/* You can add global styles to this file, and also import other style files */
+body, html {
+    height: 100%;
+    margin: auto;
+    width:auto;
+  }
+  html {
+
+    height: 100.001%;
+ 
+    overflow-y: scroll;
+ 
+ }
+  .bg1{
+    background-image: url("./assets/images/world.jpg");
+    width: 100%;
+    height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  }
+.responsive{
+    width:100%;
+    height:auto;
+}
+.mainDiv {
+    /* background-color: #c8dbea; */
+    width: 100%;
+    margin: auto;
+    /* background image settings */
+    filter: brightness(100%);
+    /* background-size: cover;
+    background-repeat: no-repeat; */
+    
+}
+.bodyDiv {
+    margin: auto;
+    font-family: sans-serif;
+}
+
+.footer {
+    height: 20px;
+    font-size: medium;
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: rgb(188, 243, 226);
+    color: black;
+    text-align: center;
+    border: none;
+    margin-top: 200px;
+}
+
+/* You can add global styles to this file, and also import other style files */
+.maincontent {
+    min-height: 450px;
+    height: max-content;
+    margin-top: 50px;
+    margin-bottom: 20px;
+    /*background: rgba(200, 219, 234, 0.3); */
+}
+.planeicon {
+    height: 75px;
+    /* float: right; */
+    vertical-align: middle;
+}
+.card {
+    overflow: visible;
+    padding: 10px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    width: 550px;
+    margin-right: auto;
+    margin-left: auto   ;
+    background-color: rgba(245, 245, 245, 1);
+    opacity: .9;
+}
+.card form{
+    padding: 20px;
+    width: 500px;
+    margin: auto;
+    
+}
+.container {
+    overflow: hidden;
+}
+.container label {
+    display: inline-block;
+    width: 100%;
+    padding-bottom: 5px;
+    font-weight: bold;
+    font-size: 15px;
+    margin-bottom: 10px;
+}
+.container input {
+    display: inline-block;
+    width: 92.5%;
+    padding-bottom: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 2px solid;
+}
+/* .container input:focus,
+    input:hover {
+        border: 2px solid green;
+    } */
+.container input:focus {
+    outline: none;
+    border-color: red;
+}
+/* .container button {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background-color: darkblue;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    width: 100%;
+    border: 1px solid;
+} */
+.container button:focus,
+    button:hover {
+        font-size: large;
+        cursor: pointer;
+    }
+.container .checkboxLabel{
+    width: 5%;
+    white-space: nowrap; 
+}
+.container .cancelbtn {
+    float: left;
+    background-color: red;
+    width: 30%;
+    margin: auto;
+    border: 1px solid;
+    padding: 10px;
+    margin-left: -10px;
+}
+.container .psw {
+    float: right;
+    padding: 10px;
+    margin-right: -10px;
+}
+.signup {
+    display: block;
+    margin-top: 15px;
+    text-align: center;
+    font-weight: bold;
+    color: black;
+}
+.container select{
+    display: inline-block;
+    padding-bottom: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
+    width: 97%;
+    border: 2px solid;
+  }
+  .container select:hover {
+          border: 2px solid ;
+  }
+  
+  .container select:focus {
+    border: 2px solid red;
+  }
+
+  .displayMsg {
+      color: green;
+      font-size: medium;
+      text-align: center;
+  }

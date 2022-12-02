@@ -1,0 +1,93 @@
+<div class="card c1">
+
+    <div id="header" style="width:auto;">
+        <h3 style="text-align: center;">Add Flights</h3>
+    </div>
+    <form (ngSubmit)="addFlight()" id="admin-form" #f="ngForm" name="form">
+        <div class="row g-3" id="flightbox">
+            <div class="col-md-12">
+                <div class="form-floating">
+                    <input class="form-control" type="number" placeholder="Enter ID" name="id"
+                        [(ngModel)]=addflightdto.id required #id="ngModel">
+                    <label for="fid"><b>Flight ID</b></label>
+                    <div *ngIf="id.invalid && (id.dirty || id.touched) || f.submitted && id.invalid"
+                        class="alert alert-danger">
+                        <div *ngIf="id.errors.required" style="color:red; font-size: 15px; margin-bottom: 10px;">*Id is
+                            required</div>
+                    </div>
+                </div>
+            </div>
+
+           
+                <div class="col-md-6">
+                    <div class="form-floating">
+                        
+                        <select class="form-select" name="fromCity" [(ngModel)]=addflightdto.fromCity required
+                            #fcity="ngModel" (change)="onCity($event)" style="border-color: #6B6A6A;">
+                            <option [ngValue]="null" [disabled]="true">--- Choose City ---</option>
+                            <option *ngFor="let ct of City" [ngValue]=ct.name>{{ct.name}} </option>
+                        </select>
+                        <label for="frm"><b>Source</b></label>
+                        <div *ngIf="fcity.invalid && (fcity.dirty || fcity.touched || f.submitted && fcity.invalid)"
+                            class="alert alert-danger">
+                            <div *ngIf="fcity.errors.required" style="color:red; font-size: 15px; margin-bottom: 10px;">
+                                *FromCity is required</div>
+                        </div>
+                        <div id="depart-res"></div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-floating" id="arrive-box">
+
+                       
+                        <select class="form-select" name="toCity" [(ngModel)]=addflightdto.toCity required
+                            #tcity="ngModel" style="border-color: #6B6A6A;">
+                            <option [ngValue]="null" [disabled]="true">--- Choose City ---</option>
+                            <option *ngFor="let ct of City" [ngValue]=ct.name>{{ct.name}} </option>
+                        </select>
+                        <label for="to"><b>Destination</b></label>
+                        <div *ngIf="tcity.invalid && (tcity.dirty || tcity.touched) || f.submitted && tcity.invalid"
+                            class="alert alert-danger">
+                            <div *ngIf="tcity.errors.required" style="color:red; font-size: 15px; margin-bottom: 10px;">
+                                *ToCity is required</div>
+                        </div>
+                        <div id="arrive-res"></div>
+                    </div>
+                <!-- </div> -->
+            </div>
+
+           
+            <div class="col-md-6">
+                <div class="form-floating">
+                    <input class="form-control" type="datetime-local" [min]="departDate" placeholder="Departure Time"
+                        name="depart" (change)="onDateSelect($event)" [(ngModel)]=addflightdto.depart #dptdate="ngModel"
+                        required style="border-color: #6B6A6A;" />
+                    <label for="dprt"><b>Departure</b></label>
+                    <div *ngIf="dptdate.invalid && (dptdate.dirty || dptdate.touched) || f.submitted && dptdate.invalid"
+                        class="alert alert-danger">
+                        <div *ngIf="dptdate.errors.required" style="color:red; font-size: 15px; margin-bottom: 10px;">
+                            *Departure Date is required
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6" id="return-box">
+                <div class="form-floating">
+                    <input class="form-control" type="datetime-local" [value]="resetDate" [min]="returnDate"
+                        placeholder="Arrvial Time" name="arrive" [(ngModel)]=addflightdto.arrive #arvdate="ngModel"
+                        required style="border-color: #6B6A6A;" />
+                    <label for="arrv"><b>Arrvial</b></label>
+                    <div *ngIf="arvdate.invalid && (arvdate.dirty || arvdate.touched) || f.submitted && arvdate.invalid"
+                        class="alert alert-danger">
+                        <div *ngIf="arvdate.errors.required" style="color:red; font-size: 15px; margin-bottom: 10px;">
+                            *Arrival Date is required
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button class="btn btn-primary" type="submit" id="edit-flight">Add Flight</button>
+        </div>
+    </form>
+</div>
